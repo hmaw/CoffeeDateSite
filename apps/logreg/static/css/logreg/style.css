@@ -1,0 +1,68 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    background-color: #5E3624;
+    background-image: url('/static/images/logreg/bkgd.jpg');
+    background-attachment: fixed;
+    background-size: cover;   
+    font-family: 'Jua', sans-serif;
+    margin: 20px 0px 0px 0px;
+    font-size: 1.2em; 
+    color: #FCF6ED;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    }
+.container{
+    width: 900px;
+    height: 300px;
+    /* display: inline-block; */
+}
+a:link{
+    color: #c2c9c2;
+}
+a:visited{
+    color: rgb(142, 175, 142);
+}
+a:hover{
+    color: #F0D0AC;
+}
+.main{
+    border-radius: 25;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.form-group{
+    display: inline-block;
+    vertical-align: top;
+    width: 390px;
+    vertical-align: top;
+}
+
+td {
+    background-color: rgba(94, 54, 36, 0.7);
+}
+
+.box {
+    background-color: #5e3624;
+    box-shadow: 0em 0.5em 1.5em rgba(10, 22, 22, 0.6);
+    padding: 0.8em;
+    border-radius: 0.3em;
+}
+
+.title {
+    font-family: 'Rancho', cursive;
+    background-color: #EDC69A;
+    color: #5E3624;
+    margin: 1.5em;
+    margin-top: 0.5em;
+}
+
+.title div {
+    font-size: 3em;
+}

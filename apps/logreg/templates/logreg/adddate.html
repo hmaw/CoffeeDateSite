@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/logreg/style.css' %}">
+
+    <title>Add a new Coffee Date</title>
+</head>
+<body>
+    <div class="container">
+        <title>Add a new Coffee Date!</title>
+        <div class="main box">
+            <h1>Coffee Date Networking</h1>
+            <p>Welcome {{ request.session.first_name }} ! </p>
+            <div>
+                <a href="/edituser">  Edit my account  </a>|
+                <a href="/logout">  Log out!</a>|
+                <a href="/dashboard"> Back </a>
+            </div>
+        </div>
+        <div class ='form-group'></div>
+            <form action="/process_adddate" method="post">
+            {% csrf_token %}
+            
+                <div class="">
+                    <br>
+                    <br>
+                    <br>
+                    <p> Main topic of your Networking Coffee Date:</p>
+                    {%  for message in messages %}
+                        {% if message.extra_tags == 'title' %}
+                            <p>{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <input type="text" name='title'></p>
+                </div>
+
+                <div class="">
+                    <p>Description - Please limit yourself to one main question as the goal of the Coffee Date is that its a quick break from work:
+                    {%  for message in messages %}
+                        {% if message.extra_tags == 'desc' %}
+                            <p>{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                     </p>
+                    <textarea type="text" name='desc'rows="4" cols="30"></textarea> 
+                </div>
+
+                <div class="">
+                    <p>Location of the coffee shop</p> 
+                    <p>example: Starbucks, corner of 1st and Trimble
+                    <p>Or Skype username or Zoom Room for the meeting.</p>
+                    {%  for message in messages %}
+                        {% if message.extra_tags == 'loc' %}
+                            <p>{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <input id="text" name="loc" type="text"/></p>
+                </div>
+
+
+                <div class="form-group col-md-6"> 
+                <div id="form-group map" style ="height:100%">
+                </div>
+               <button class="btn btn-outline-success " name="submit" type="submit">Submit</button>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4251.026800574303!2d-121.91311106044014!3d37.37525142292247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb713acc8ef2b%3A0xc4237df2ec635dcc!2sCoding+Dojo!5e0!3m2!1sen!2sus!4v1535656578424" width="370" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
+               
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var map;
+    function initMap() {  // map options
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 37.3382, lng: -121.864},
+        zoom: 16
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNkwTpIMDz_2Sbj2J2M-EudnfLx6TmhVU&callback=initMap"
+    async defer></script>
+</body>
+</html>
+
+

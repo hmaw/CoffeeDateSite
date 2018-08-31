@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+    
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/logreg/style.css' %}">
+<style>
+        @import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+        body {
+            background-color: #303f56;	
+        }
+        
+        .social {
+            margin: 0 auto;
+            width: 500px;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .social h2 {
+            color: #86a5d6;
+            font-size: 40px;
+            font-family: 'PT Sans', sans-serif;
+        }
+        
+        [class^="icon-btn"] /*.icon-btn*/ {
+            height: 75px;
+            width: 75px;
+            border: 0;
+            color: #fff;
+            cursor: pointer;
+            font-size: 40px;
+            line-height: 75px;
+            transition: ease-in-out .3s;
+            border-radius: 50px;
+            margin-left: 10px;
+            background-color: #fff;
+        }
+        
+        .twitter {
+            color: #4099FF;
+
+        }
+        
+        .facebook {
+            color: #3B5998;
+
+        }
+        
+        .instagram {
+            color: #5C3D2E;
+
+        }
+        
+        .github {
+            color: #4183C4;
+
+        }
+        
+        .icon-btn:hover {
+            transform: scale(1.10);	
+            color: #FFFFFF;
+        }
+        
+        .twitter:hover {
+            background-color: #4099FF;	
+        }
+        
+        .facebook:hover {
+            background-color: #3B5998;	
+        }
+        
+        .google-plus:hover {
+            background-color: #DB5A3C;	
+        }
+        
+        .instagram:hover {
+            background-color: #5C3D2E;	
+        }
+        
+        .github:hover {
+            background-color: #4183C4;	
+        }
+        
+        a.link {
+            color: inherit;	
+        }
+        
+</style>
+
+    <title>Coffee Date User Page</title>
+</head>
+<body>
+    <div class="container">
+            <title>Coffee Date Networking - Dashboard!</title>
+
+        <div class="main box">
+            <h1>Coffee Date Networking</h1>
+            <p>Welcome {{ request.session.first_name }} ! </p>
+            <div class="nav"></div>
+                <a href="/edituser">Edit my account</a> |
+                <a href="/logout">Log out! </a> |
+                <a class ="nav" href="/dashboard">Back </a>
+            </div>
+        </div>
+            <form action="/processedituser" method="post">
+            <p><label>First Name:</label>
+                {%  for message in messages %}
+                    {% if message.extra_tags == 'first_name' %}
+                        <p class="text-danger" >{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                <input type="text" name="first_name"  value="{{edituser.first_name}}"></p>
+                
+            <p><label>Last Name:</label>
+                {%  for message in messages %}
+                    {% if message.extra_tags == 'last_name' %}
+                        <p class="text-danger">{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+            <input type="text" name="last_name" value="{{edituser.last_name}}"></p>
+                
+            <p><label>Email:</label>
+                {%  for message in messages %}
+                    {% if message.extra_tags == 'email' %}
+                        <p class="text-danger">{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+            <input type="text" name="email" value="{{edituser.email}}"></p>
+                    
+                <button type="submit"class="btn btn-outline-success" >Update!</button>
+                    {% csrf_token %}
+            <p></p>
+            </form>
+        </div>
+        <div>
+            <p>Hey, wanna help others know about CoffeeDate?  Just send them a message.</p>
+            <a href="mailto:enteryour@addresshere.com?subject=CoffeeDateNetworkingwebsiteiscool!&body=Link to website, with short description"></a>
+            <div class="social">
+                <button class="icon-btn twitter"> 	Tw&#32;
+                <a class="link" href="https://twitter.com/" target="_blank">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <button class="icon-btn facebook"> f&#32;
+                <a class="link" href="https://www.facebook.com/" target="_blank">
+                    <i class="fa fa-facebook"></i> 
+                </a>
+                <button class="icon-btn instagram"> I&#32;
+                <a class="link" href="https://www.instagram.com/"  target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <button class="icon-btn github"> G &#32;
+                <a class="link" href="https://github.com/" target="_blank">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

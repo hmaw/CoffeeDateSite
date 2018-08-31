@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Rancho" rel="stylesheet">
+    
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/logreg/style.css' %}">
+
+    <title>Coffee Date!</title>
+</head>
+<body>
+    <div class ='container'>
+        <div class="main box ">
+                <h1>Networking Coffee Date </h1>
+        </div>
+        <br>
+        <br>
+
+        <div class='form-group'>
+            <h1>Reg:</h1>
+            <form action="/reg" method="Post">
+                {% csrf_token %}
+                <p>Email:
+                {%  for message in messages %}
+                {% if message.extra_tags == 'email' %}
+                    <p>{{message}}
+                    {% endif %}
+                {% endfor %}
+                <input type="text" name='email'></p>
+                <p>First Name:
+                {%  for message in messages %}
+                {% if message.extra_tags == 'first_name' %}
+                    <p>{{message}}
+                    {% endif %}
+                {% endfor %}
+                <input type="text" name='first_name'></p>
+                <p>Last Name:
+                {%  for message in messages %}
+                {% if message.extra_tags == 'last_name' %}
+                    <p>{{message}}
+                    {% endif %}
+                {% endfor %}
+                <input type="text" name='last_name'></p>
+                <p>Password:
+                {%  for message in messages %}
+                {% if message.extra_tags == 'password' %}
+                <p>{{message}}
+                {% endif %}
+                {% endfor %}
+                <input type="password" name='password'></p>
+
+                <p>Password Confirmation:
+                {%  for message in messages %}
+                {% if message.extra_tags == 'password' %}
+                    <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+                <input type="password" name='password_conf'></p>
+                <input type="submit" class="btn btn-outline-success" value="Reg!">
+            </form>
+        </div>
+
+            <div class ='form-group'>
+                <h1>Login:</h1> 
+                {%  for message in messages %}
+                    {% if message.extra_tags == 'login' %}
+                        <p>{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                <form action="/login" method="Post">
+                    {% csrf_token %}
+                    <p>Email:
+                    <input type="text" name='email'></p>
+                    <p>Password:
+                    <input type="password" name='password'></p>
+                    <input type="submit" class="btn btn-outline-success" value="Login"> </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+</body>
+</html>
